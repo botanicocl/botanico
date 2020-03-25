@@ -90,6 +90,10 @@ odoo.define('calendar_filters.calendar_controller', function (require) {
 						// console.log("yellow: " + JSON.stringify(color_codigo));
 						color_evento = 'orange'
 					} 
+					if (color_codigo == 3) {
+						// console.log("yellow: " + JSON.stringify(color_codigo));
+						color_evento = 'white'
+					} 
 					if (color_codigo == 4) {
 						// console.log("blue: " + JSON.stringify(color_codigo));
 						color_evento = 'blue'
@@ -249,6 +253,10 @@ odoo.define('calendar_filters.calendar_controller', function (require) {
 														// console.log("yellow: " + JSON.stringify(color_codigo));
 														color_evento = 'orange'
 													} 
+													if (color_codigo == 3) {
+														// console.log("yellow: " + JSON.stringify(color_codigo));
+														color_evento = 'white'
+													} 													
 													if (color_codigo == 4) {
 														// console.log("blue: " + JSON.stringify(color_codigo));
 														color_evento = 'blue'

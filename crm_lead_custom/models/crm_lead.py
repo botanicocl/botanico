@@ -55,7 +55,7 @@ class CrmLead(models.Model):
             unique_stages = self.env['crm.stage'].search([('unique_lead','=', True)])
             unique_date_events = self.search_count([
                 ('date_event', '=', vals.get('date_event')),
-                ('stage_id', 'in', [ustage.id for ustage in unique_stages])
+                # ('stage_id', 'in', [ustage.id for ustage in unique_stages])
             ])
             print("Trieufriend:", unique_date_events)
             if unique_date_events > 0:

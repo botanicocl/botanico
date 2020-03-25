@@ -65,11 +65,15 @@
 	line-height: normal;
 }
 
+.ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight {
+	background: white !important;
+	border: 5px solid grey !important;
+}
+
 /*table.ui-datepicker-calendar tbody td{
 	width: 85px;
 	height: auto;
 	font: 25pt Arial, sans-serif;
 }
-
 
 

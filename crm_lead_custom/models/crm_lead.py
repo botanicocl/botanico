@@ -66,6 +66,17 @@ class CrmLead(models.Model):
     def write(self, values):
         stage_obj = self.env['crm.stage']
         
+        if values.get('date_event', False):
+            # self.check_date_event(vals.get('date_event'), stage_id)
+            unique_stages = self.env['crm.stage'].search([('unique_lead','=', True)])
+            unique_date_events = self.search_count([
+                ('date_event', '=', values.get('date_event')),
+                # ('stage_id', 'in', [ustage.id for ustage in unique_stages])
+            ])
+            print("Trieufriend:", unique_date_events)
+            if unique_date_events > 0:
+                raise UserError(_("You cannot create more opportunities, chosen event date is blocked."))
+
         if values.get('date_event', False) and values.get('stage_id', False):
             stage_id =  stage_obj.browse(values.get('stage_id'))
             if stage_id.unique_lead:

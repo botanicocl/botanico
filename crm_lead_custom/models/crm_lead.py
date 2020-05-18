@@ -58,8 +58,8 @@ class CrmLead(models.Model):
                 # ('stage_id', 'in', [ustage.id for ustage in unique_stages])
             ])
             print("Trieufriend:", unique_date_events)
-            if unique_date_events > 0:
-                raise UserError(_("You cannot create more opportunities, chosen event date is blocked."))
+            # if unique_date_events > 0:
+            #     raise UserError(_("You cannot create more opportunities, chosen event date is blocked."))
         return super(CrmLead, self.with_context(context, mail_create_nolog=True)).create(vals)
 
     @api.multi
@@ -74,8 +74,8 @@ class CrmLead(models.Model):
                 # ('stage_id', 'in', [ustage.id for ustage in unique_stages])
             ])
             print("Trieufriend:", unique_date_events)
-            if unique_date_events > 0:
-                raise UserError(_("You cannot create more opportunities, chosen event date is blocked."))
+            # if unique_date_events > 0:
+            #     raise UserError(_("You cannot create more opportunities, chosen event date is blocked."))
 
         if values.get('date_event', False) and values.get('stage_id', False):
             stage_id =  stage_obj.browse(values.get('stage_id'))

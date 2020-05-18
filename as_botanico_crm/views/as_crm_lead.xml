@@ -42,7 +42,20 @@
                 </xpath>
             </field>
         </record>
-
+    <!-- Crm Lead Tree View - Score and Salesman added -->
+        <record model="ir.ui.view" id="as_lead_tree_view">
+            <field name="name">as.crm.lead.tree.inherit</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="crm.crm_case_tree_view_leads" />
+            <field name="arch" type="xml">
+                 <xpath expr="//field[@name='create_date']" position="after">
+                    <field name="date_event"/>
+                </xpath>
+                <xpath expr="//field[@name='name']" position="after">
+                    <field name="stage_id"/>
+                </xpath>
+            </field>
+        </record>
         <!-- Group by date_event/ -->
         <record id="as_crm_lead_custom_search" model="ir.ui.view">   
             <field name="name">inherited.crm.lead.custom.search.view</field>   

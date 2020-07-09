@@ -13,6 +13,7 @@
                     <field name="as_done"/>
                     <button name="activar_ganado" string="Fase Ganado" class="oe_highlight" type="object" confirm="Esta fase se clasificara como GANADO, procedemos?"/>
                     <field name="as_win"/>                    
+                    <field name="as_sequence"/>                    
                 </xpath>
             </field>
         </record>
@@ -27,6 +28,7 @@
                     <field name="as_done"/>
                     <field name="as_win"/>
                     <field name="unique_lead"/>
+                    <field name="as_sequence"/>   
                 </xpath>
             </field>
         </record>
@@ -39,6 +41,7 @@
 
                 <xpath expr="//field[@name='create_date']" position="after">
                     <field name="date_event"/>
+                    <field name="as_sequence"/>
                 </xpath>
             </field>
         </record>

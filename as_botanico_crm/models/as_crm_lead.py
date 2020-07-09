@@ -14,6 +14,7 @@ class as_crm_stage(models.Model):
 
     as_done = fields.Boolean("Realizado", default=False, readonly=True)
     as_win = fields.Boolean("Ganado", default=False, readonly=True)
+    as_sequence = fields.Integer("Secuencia", default=1)
     
     def as_disable(self, field):
         where_clause_params = ''
@@ -43,3 +44,9 @@ class as_crm_stage(models.Model):
             query = "update crm_lead set stage_id = " + str(as_stage_done.id) + " where stage_id = " + str(as_stage_win.id) + " and date_event <= '" + today + "';"
             _logger.debug("\n\n\nquery: %s", str(query))
             self.env.cr.execute(query)        
+
+class CrmLead(models.Model):
+
+    _inherit = "crm.lead"
+
+    as_sequence = fields.Integer(related="stage_id.as_sequence", store=True)

@@ -34,12 +34,16 @@ odoo.define('calendar_filters.calendar_controller', function (require) {
 			var date_start = false;
 			var date_stop = false;
 			var fields = ['name','color'];
+			
 			var context = {};
 			if (self.mapping.date_start) {
+				// date_start = self.mapping.date_start;
 				date_start = self.mapping.date_start;
 				fields.push(date_start);
+				console.log("largpoe: " + date_start);
 			}
 			if (self.mapping.date_stop) {
+				// date_stop = self.mapping.date_stop;
 				date_stop = self.mapping.date_stop;
 				fields.push(date_stop);
 			}
@@ -73,24 +77,33 @@ odoo.define('calendar_filters.calendar_controller', function (require) {
 				return dates;
 			};
 
-
+			window.dim = fields;
 			this._rpc({
 				model: self.modelName,
 				method: 'search_read',
 				domain: [],
 				fields : fields,
+				kwargs: {
+				order: [{name: 'as_sequence', asc: true}],
+				}
 			},{async:false}).then(function (output) {
-				console.log("largo: " + output.length);
+				console.log("largoe: " + output.length);
 				
 				$.each(output, function( index, value ) {
 					var color_codigo = '';
 					var color_evento = '';
 					color_codigo = value.color;
+					window.color =value
+					
 					if (color_codigo == 2) {
 						// console.log("yellow: " + JSON.stringify(color_codigo));
 						color_evento = 'orange'
 					} 
 					if (color_codigo == 3) {
+						// console.log("yellow: " + JSON.stringify(color_codigo));
+						color_evento = 'yellow'
+					} 
+					if (color_codigo == 1000) {
 						// console.log("yellow: " + JSON.stringify(color_codigo));
 						color_evento = 'white'
 					} 
@@ -106,6 +119,7 @@ odoo.define('calendar_filters.calendar_controller', function (require) {
 						if(date_stop in value) {
 							if(value[date_stop]){
 								const dates = getDatesBetween(new Date(value[date_start]), new Date(value[date_stop]));
+								// console.log("fecha: " + dates);
 								$.each(dates, function( index, v1 ) {
 									if(v1 in events)
 									{
@@ -122,7 +136,13 @@ odoo.define('calendar_filters.calendar_controller', function (require) {
 					else{
 						if(date_start in value){
 							if(value[date_start]){
-								// console.log("value[date_start]: " + JSON.stringify(value[date_start]));
+							// 	if (value[date_start] == "2020-02-13"){
+							// 	console.log("entro a 2: " + value[date_start]);
+							// 	console.log("color: " + color_evento);
+							// 	console.log("nombre: " + value['name']);
+							// 	console.log("value[date_start]: " + JSON.stringify(value[date_start]));
+							// }
+							
 								// var new_dt = value[date_start].substring(0, 10);
 								var new_dt = value.date_event.substring(0, 10);
 								if(new_dt in events){
@@ -133,6 +153,7 @@ odoo.define('calendar_filters.calendar_controller', function (require) {
 									// console.log("color_evento: " + JSON.stringify(color_evento));
 								}
 							}
+						
 						}
 					}
 				});
@@ -244,6 +265,9 @@ odoo.define('calendar_filters.calendar_controller', function (require) {
 												method: 'search_read',
 												domain: [],
 												fields : fields,
+												kwargs: {
+													order: [{name: 'as_sequence', asc: true}],
+													}
 											},{async:false}).then(function (output) {
 												$.each(output, function( index, value ) {
 													var color_codigo = '';

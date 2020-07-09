@@ -7,7 +7,7 @@
     'sequence': 50,
     'summary': "Custom Lead fields",
     'website': 'http://www.ahorasoft.com',
-    'version': '1.0',
+    'version': '1.0.1',
     'description': """
 Calendar year CRM
 =================

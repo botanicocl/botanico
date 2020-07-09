@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
 	"name" : "Ahorasoft Calendario",
-	"version" : "11.0.0.1",
+	"version" : "11.0.0.2",
 	"depends" : ['base','calendar','crm_lead_custom'],
 	'category': 'Calendar',
 	'version': '0.1',
